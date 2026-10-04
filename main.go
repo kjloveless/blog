@@ -94,14 +94,14 @@ func GetAllArticles(w http.ResponseWriter, r *http.Request, ps httprouter.Params
 	articles, err := dbGetAllArticles()
 	catch(err)
 
-	t, err := template.ParseFiles("templates/base.html", "templates/index.html")
+	t, err := template.ParseFiles("templates/base.tmpl", "templates/index.tmpl")
 	catch(err)
 	err = t.Execute(w, articles)
 	catch(err)
 }
 
 func NewArticle(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	t, err := template.ParseFiles("templates/base.html", "templates/quill.html", "templates/new.html")
+	t, err := template.ParseFiles("templates/base.tmpl", "templates/quill.tmpl", "templates/new.tmpl")
 	catch(err)
 	err = t.Execute(w, nil)
 	catch(err)
@@ -122,7 +122,7 @@ func CreateArticle(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
 
 func GetArticle(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	article := r.Context().Value(articleContextKey{}).(*Article)
-	t, err := template.ParseFiles("templates/base.html", "templates/quill.html", "templates/article.html")
+	t, err := template.ParseFiles("templates/base.tmpl", "templates/quill.tmpl", "templates/article.tmpl")
 	catch(err)
 	err = t.Execute(w, article)
 	catch(err)
@@ -131,7 +131,7 @@ func GetArticle(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 func EditArticle(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	article := r.Context().Value(articleContextKey{}).(*Article)
 
-	t, err := template.ParseFiles("templates/base.html", "templates/quill.html", "templates/edit.html")
+	t, err := template.ParseFiles("templates/base.tmpl", "templates/quill.tmpl", "templates/edit.tmpl")
 	catch(err)
 	err = t.Execute(w, article)
 	catch(err)
