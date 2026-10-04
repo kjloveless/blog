@@ -1,0 +1,13 @@
+{{ define "title" }}{{ .Title }}{{ end }}
+{{ define "scripts" }}{{ template "quill-assets" }}{{ end }}
+{{define "body" }}
+<h1>{{ .Title }}</h1>
+<div id="article-content" data-quill>{{ .Content }}</div>
+<div>
+  <a href="/articles/{{.ID}}/edit">edit</a>
+  <form action="/articles/{{.ID}}" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">delete</button>
+  </form>
+</div>
+{{ end }}

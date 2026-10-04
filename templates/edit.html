@@ -1,0 +1,15 @@
+{{ define "title" }}edit article{{ end }}
+{{ define "scripts" }}{{ template "quill-assets" }}{{ end }}
+
+{{ define "body" }}
+<form method="post" action="/articles/{{ .ID }}">
+    <fieldset class="article-fields">
+        <label>
+            <input type="text" name="title" value="{{ .Title }}">
+        </label>
+        {{ template "quill-editor" . }}
+        <input type="hidden" name="_method" value="PUT">
+        <button type="submit">edit</button>
+    </fieldset>
+</form>
+{{ end }}

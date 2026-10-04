@@ -1,0 +1,15 @@
+{{ define "title" }}all articles{{ end }}
+{{ define "scripts" }}{{ end }}
+{{ define "body" }}
+{{ if eq (len .) 0 }}
+nothing to see here
+{{ end }}
+{{ range . }}
+<div>
+    <a href="/articles/{{.ID}}">{{ .Title }}</a>
+</div>
+{{end}}
+<p>
+    <a href="/articles">create a new article</a>
+</p>
+{{ end }}

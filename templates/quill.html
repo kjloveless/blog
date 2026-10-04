@@ -1,0 +1,20 @@
+{{ define "quill-assets" }}
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js" defer></script>
+<script src="/static/quill.js" defer></script>
+<style>
+    #editor { min-height: 200px; }
+    [data-quill] img { max-width: 100%; }
+    #article-content { white-space: pre-wrap; border: 0; }
+    #article-content .ql-editor { padding: 0; }
+    #upload-status:empty { display: none; }
+    .article-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+</style>
+{{ end }}
+
+{{ define "quill-editor" }}
+<div id="editor" data-quill aria-label="Article content">{{ with . }}{{ .Content }}{{ end }}</div>
+<input type="hidden" name="content">
+<input type="file" id="image-input" accept="image/png,image/jpeg,image/gif,image/webp" hidden>
+<p id="upload-status" role="status"></p>
+{{ end }}
